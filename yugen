@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version='2' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  <meta charset='UTF-8'/>
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'/>
+  <title><data:blog.title/></title>
+  <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap' rel='stylesheet'/>
+  <b:skin><![CDATA[
+    :root {
+      --bg: #0d0d0f;
+      --card: #1a1a1f;
+      --accent: #1e90ff;
+      --text: #fff;
+      --muted: #aaa;
+      --radius: 1rem;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.7;
+      -webkit-tap-highlight-color: transparent;
+    }
+    header {
+      background: #121212;
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    header h1 {
+      font-size: 1.25rem;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+    /* Hamburger Menu */
+    .menu-toggle {
+      display: block;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      position: relative;
+      z-index: 1100;
+    }
+    .menu-toggle span,
+    .menu-toggle span:before,
+    .menu-toggle span:after {
+      display: block;
+      background: var(--muted);
+      height: 3px;
+      width: 24px;
+      border-radius: 2px;
+      position: absolute;
+      left: 6px;
+      transition: all 0.3s;
+    }
+    .menu-toggle span {
+      top: 16px;
+    }
+    .menu-toggle span:before {
+      content: '';
+      top: -8px;
+    }
+    .menu-toggle span:after {
+      content: '';
+      top: 8px;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      left: -100vw;
+      width: 70vw;
+      max-width: 320px;
+      height: 100vh;
+      background: #18181c;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.45);
+      padding-top: 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      transition: left 0.3s;
+      z-index: 1050;
+    }
+    nav.open {
+      left: 0;
+    }
+    nav a {
+      padding: 0.7rem 1.5rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 1.1rem;
+      border-radius: 0.5rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    nav a:hover, nav a.active {
+      background: var(--accent);
+      color: #fff;
+    }
+    /* Overlay for menu */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 1040;
+    }
+    .overlay.open {
+      display: block;
+    }
+    /* Main Content */
+    main {
+      padding: 1.2rem 0.5rem 0 0.5rem;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: bold;
+      margin-bottom: 0.8rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.1rem;
+    }
+    @media (min-width: 480px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: #222;
+    }
+    .card-body {
+      padding: 0.8rem;
+    }
+    .card-body h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      color: var(--accent);
+    }
+    .label-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+    .label {
+      background: #23232a;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.75rem;
+      border-radius: 0.5rem;
+    }
+    /* Reader / Article Styles */
+    .reader-content {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      font-size: 1.08rem;
+      color: var(--text);
+      line-height: 1.8;
+      word-break: break-word;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1.2rem 0.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-top: 1px solid #222;
+      margin-top: 2rem;
+    }
+    /* Hide scrollbars on mobile */
+    ::-webkit-scrollbar { width: 0 !important }
+  ]]></b:skin>
+  <script><![CDATA[
+    // Hamburger menu toggle
+    function toggleMenu() {
+      var nav = document.getElementById('nav');
+      var overlay = document.getElementById('overlay');
+      nav.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('nav').classList.remove('open');
+      document.getElementById('overlay').classList.remove('open');
+    }
+    window.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('menu-toggle').onclick = toggleMenu;
+      document.getElementById('overlay').onclick = closeMenu;
+      // Auto close menu on nav link click
+      Array.from(document.querySelectorAll('#nav a')).forEach(function(link){
+        link.onclick = closeMenu;
+      });
+    });
+  ]]></script>
+</head>
+<body>
+  <header>
+    <h1>Yūgen</h1>
+    <button id="menu-toggle" class="menu-toggle" aria-label="Menu">
+      <span></span>
+    </button>
+    <div id="overlay" class="overlay"></div>
+    <nav id="nav">
+      <a expr:href='data:blog.homepageUrl' class="active">Home</a>
+      <a href='#popular'>Popular</a>
+      <a href='#updated'>Updated</a>
+      <a href='#library'>Library</a>
+    </nav>
+  </header>
+  <main id='home'>
+    <section id='continue'>
+      <div class='section-title'>Continue Reading</div>
+      <div class='grid'>
+        <b:section class='card-section' id='continue-reading' maxposts='8'/>
+      </div>
+    </section>
+    <section id='popular'>
+      <div class='section-title'>Most Popular</div>
+      <div class='grid'>
+        <b:section class='card-section' id='popular-posts' maxposts='8'/>
+      </div>
+    </section>
+    <section id='updated'>
+      <div class='section-title'>Updated Today</div>
+      <div class='grid'>
+        <b:section class='card-section' id='recent-updates' maxposts='8'/>
+      </div>
+    </section>
+    <!-- Contoh area baca novel/manga -->
+    <!--
+    <section class="reader-content">
+      <h2>Judul Bab / Chapter</h2>
+      <div>
+        Isi novel/manga di sini...
+      </div>
+    </section>
+    -->
+  </main>
+  <footer>
+    Website ini tidak menyimpan file apapun di server kami. Semua konten ditautkan dari sumber pihak ketiga.
+  </footer>
+</body>
+</html>
